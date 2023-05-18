@@ -51,6 +51,8 @@ android {
 
 dependencies {
 
+    implementation(project(":preference"))
+
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -73,4 +75,5 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
+    implementation(libs.kotlinx.coroutines.android)
 }

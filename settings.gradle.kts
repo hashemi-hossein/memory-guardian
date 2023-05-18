@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MemoryGuardian"
 include(":app")
- 
+include(":preference")
