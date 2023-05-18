@@ -3,6 +3,7 @@ package ara.memoryguardian.ui.screen.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -43,14 +44,19 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                Text(text = "Auto Clear Clipboard")
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    Text(text = "Auto Clear Clipboard")
+                    Switch(checked = uiState.isAutoCleaningEnable, onCheckedChange = viewModel::toggleAutoClearing)
+                }
                 OutlinedTextField(
-                    value = "15",
-                    onValueChange = {},
+                    value = uiState.autoCleaningInterval,
+                    onValueChange = viewModel::changeInterval,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = { Text(text = "Interval") },
                 )
-                Switch(checked = uiState.enabled, onCheckedChange = viewModel::toggleAutoClearing)
             }
         }
     }
