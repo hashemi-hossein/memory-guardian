@@ -5,8 +5,6 @@ import android.content.Context
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
-import ara.memoryguardian.clear
-import ara.memoryguardian.getClipboardManager
 import ara.note.domain.usecase.userpreferences.ReadUserPreferencesUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.TimeUnit

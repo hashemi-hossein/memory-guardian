@@ -1,4 +1,4 @@
-package ara.memoryguardian
+package ara.memoryguardian.work
 
 import android.content.ClipData
 import android.content.ClipboardManager

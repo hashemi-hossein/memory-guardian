@@ -3,8 +3,6 @@ package ara.memoryguardian.work
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import ara.memoryguardian.clear
-import ara.memoryguardian.getClipboardManager
 import timber.log.Timber
 
 class ClipboardWorker(
