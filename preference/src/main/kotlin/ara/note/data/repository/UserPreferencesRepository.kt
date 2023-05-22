@@ -24,12 +24,18 @@ class UserPreferencesRepository
         userPreferencesStore.updateData {
             Timber.d("$kProperty-- value= $value")
             when (kProperty) {
+                UserPreferences::isNotificationEnable -> {
+                    it.copy(isNotificationEnable = value as Boolean)
+                }
+
                 UserPreferences::isAutoCleaningEnable -> {
                     it.copy(isAutoCleaningEnable = value as Boolean)
                 }
+
                 UserPreferences::autoCleaningInterval -> {
                     it.copy(autoCleaningInterval = value as Int)
                 }
+
                 else -> {
                     error("wrong input")
                 }
