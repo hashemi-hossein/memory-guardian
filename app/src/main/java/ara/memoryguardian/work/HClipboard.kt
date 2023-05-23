@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
+import androidx.work.workDataOf
 import ara.note.domain.usecase.userpreferences.ReadUserPreferencesUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.TimeUnit
@@ -21,19 +22,29 @@ class HClipboard @Inject constructor(
         context.getClipboardManager()
     }
 
-    fun clear(): Unit {
+    suspend fun clear(): Unit {
         clipboardManager.clear()
+        if (readUserPreferencesUseCase().isNotificationEnable)
+            context.showNotification("Clipboard cleared", "")
     }
 
-    suspend fun toggleAutoClearing(checked: Boolean): Unit {
+    suspend fun toggleAutoClearing(isAutoCleaningEnable: Boolean): Unit {
         val workManager = WorkManager.getInstance(context)
-        if (checked) {
-            val interval = readUserPreferencesUseCase().autoCleaningInterval
+        if (isAutoCleaningEnable) {
+            val userPreferences = readUserPreferencesUseCase()
             val workRequest: WorkRequest =
-                PeriodicWorkRequestBuilder<ClipboardWorker>(interval.toLong(), TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<ClipboardWorker>(userPreferences.autoCleaningInterval.toLong(), TimeUnit.MINUTES)
+                    .setInputData(
+                        workDataOf(
+                            "isNotificationEnable" to userPreferences.isNotificationEnable
+                        )
+                    )
                     .build()
 
-            workManager.enqueue(workRequest)
+            if (userPreferences.isAutoCleaningEnable.not())
+                workManager.enqueue(workRequest)
+            else
+                workManager.updateWork(workRequest)
         } else {
             workManager.cancelAllWork()
         }
