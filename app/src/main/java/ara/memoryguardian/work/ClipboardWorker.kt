@@ -6,16 +6,21 @@ import androidx.work.WorkerParameters
 import timber.log.Timber
 
 class ClipboardWorker(
-    private val appContext: Context,
+    private val context: Context,
     private val workerParams: WorkerParameters,
-) : Worker(appContext, workerParams) {
+) : Worker(context, workerParams) {
+
     override fun doWork(): Result {
         Timber.d("ClipboardWorker class # doWork fun")
         Timber.d("workerParams.id = ${workerParams.id}")
         Timber.d("workerParams.inputData.keyValueMap = ${workerParams.inputData.keyValueMap}")
 
-        val clipboardManager = appContext.getClipboardManager()
+        val clipboardManager = context.getClipboardManager()
         clipboardManager.clear()
+
+        val isNotificationEnable = inputData.getBoolean("isNotificationEnable",false)
+        if (isNotificationEnable)
+            context.showNotification("Clipboard cleared", "")
 
         return Result.success()
     }
