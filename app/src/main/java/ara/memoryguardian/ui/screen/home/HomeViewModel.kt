@@ -29,6 +29,7 @@ class HomeViewModel @Inject constructor(
             observeUserPreferencesUseCase().collect { preference ->
                 _uiState.update {
                     it.copy(
+                        isNotificationEnable = preference.isNotificationEnable,
                         isAutoCleaningEnable = preference.isAutoCleaningEnable,
                         autoCleaningInterval = preference.autoCleaningInterval.toString(),
                     )
@@ -37,12 +38,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun clearClipBoard() = hClipboard.clear()
+    fun clearClipBoard() = viewModelScope.launch { hClipboard.clear() }
 
-    fun toggleAutoClearing(checked: Boolean) {
+    fun toggleAutoClearing(isAutoCleaningEnable: Boolean) {
         viewModelScope.launch {
-            writeUserPreferencesUseCase(UserPreferences::isAutoCleaningEnable, checked)
-            hClipboard.toggleAutoClearing(checked)
+            hClipboard.toggleAutoClearing(isAutoCleaningEnable)
+            writeUserPreferencesUseCase(UserPreferences::isAutoCleaningEnable, isAutoCleaningEnable)
         }
     }
 
@@ -51,6 +52,22 @@ class HomeViewModel @Inject constructor(
             viewModelScope.launch {
                 writeUserPreferencesUseCase(UserPreferences::autoCleaningInterval, value.toInt())
             }
+        }
+    }
+
+    fun emptySnackbarMessage() {
+        _uiState.update { it.copy(snackbarMessage = null) }
+    }
+
+    fun showSnackbar(message: String) {
+        _uiState.update { it.copy(snackbarMessage = message) }
+    }
+
+    fun toggleNotification(checked: Boolean): Unit {
+        viewModelScope.launch {
+            if (uiState.value.isAutoCleaningEnable)
+                hClipboard.toggleAutoClearing(true)
+            writeUserPreferencesUseCase(UserPreferences::isNotificationEnable, checked)
         }
     }
 }
