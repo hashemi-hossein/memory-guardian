@@ -64,7 +64,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 Button(onClick = viewModel::clearClipBoard) {
-                    Text(text = "Clear Clipboard")
+                    Text(text = "Clear Clipboard Now")
                 }
 
                 Spacer(modifier = Modifier.height(30.dp))
