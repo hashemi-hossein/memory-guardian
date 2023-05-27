@@ -29,10 +29,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import ara.memoryguardian.R
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -64,7 +66,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 Button(onClick = viewModel::clearClipBoard) {
-                    Text(text = "Clear Clipboard Now")
+                    Text(text = stringResource(R.string.clear_clipboard_now))
                 }
 
                 Spacer(modifier = Modifier.height(30.dp))
@@ -73,14 +75,14 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    Text(text = "Auto Clear Clipboard")
+                    Text(text = stringResource(R.string.auto_clear_clipboard))
                     Switch(checked = uiState.isAutoCleaningEnable, onCheckedChange = viewModel::toggleAutoClearing)
                 }
                 OutlinedTextField(
                     value = uiState.autoCleaningInterval,
                     onValueChange = viewModel::changeInterval,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    label = { Text(text = "Interval") },
+                    label = { Text(text = stringResource(R.string.interval)) },
                 )
 
                 val notificationPermissionRequest = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
@@ -88,7 +90,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                         viewModel.toggleNotification(true)
                     } else {
                         Timber.e("POST_NOTIFICATIONS permission have not granted")
-                        viewModel.showSnackbar("The Permission is needed to show Notifications")
+                        viewModel.showSnackbar(context.getString(R.string.the_permission_is_needed_to_show_notifications))
                     }
                 }
 
@@ -96,7 +98,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    Text(text = "Notification")
+                    Text(text = stringResource(R.string.notification))
                     Switch(
                         checked = uiState.isNotificationEnable,
                         onCheckedChange = {

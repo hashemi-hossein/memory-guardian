@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MemoryGuardian</string>
+
+    <string name="clear_clipboard_now">Clear Clipboard Now</string>
+    <string name="auto_clear_clipboard">Auto Clear Clipboard</string>
+    <string name="interval">Interval</string>
+    <string name="notification">Notification</string>
+    <string name="the_permission_is_needed_to_show_notifications">The Permission is needed to show Notifications</string>
 </resources>
