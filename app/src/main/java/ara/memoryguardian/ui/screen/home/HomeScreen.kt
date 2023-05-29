@@ -13,8 +13,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -45,6 +48,15 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
+    val notificationPermissionRequest = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) {
+            viewModel.toggleNotification(true)
+        } else {
+            Timber.e("POST_NOTIFICATIONS permission have not granted")
+            viewModel.showSnackbar(context.getString(R.string.the_permission_is_needed_to_show_notifications))
+        }
+    }
+
     uiState.snackbarMessage?.let { snackbarMessage ->
         scope.launch {
             snackbarHostState.showSnackbar(snackbarMessage, withDismissAction = true)
@@ -58,7 +70,9 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
         Box(
             modifier = Modifier
                 .padding(contentPadding)
-                .fillMaxSize(),
+                .padding(horizontal = 30.dp)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
             contentAlignment = Alignment.Center,
         ) {
             Column(
@@ -69,30 +83,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                     Text(text = stringResource(R.string.clear_clipboard_now))
                 }
 
-                Spacer(modifier = Modifier.height(30.dp))
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
-                ) {
-                    Text(text = stringResource(R.string.auto_clear_clipboard))
-                    Switch(checked = uiState.isAutoCleaningEnable, onCheckedChange = viewModel::toggleAutoClearing)
-                }
-                OutlinedTextField(
-                    value = uiState.autoCleaningInterval,
-                    onValueChange = viewModel::changeInterval,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    label = { Text(text = stringResource(R.string.interval)) },
-                )
-
-                val notificationPermissionRequest = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-                    if (isGranted) {
-                        viewModel.toggleNotification(true)
-                    } else {
-                        Timber.e("POST_NOTIFICATIONS permission have not granted")
-                        viewModel.showSnackbar(context.getString(R.string.the_permission_is_needed_to_show_notifications))
-                    }
-                }
+                Divider(modifier = Modifier.padding(vertical = 20.dp))
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -114,6 +105,20 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                         }
                     )
                 }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    Text(text = stringResource(R.string.auto_clear_clipboard))
+                    Switch(checked = uiState.isAutoCleaningEnable, onCheckedChange = viewModel::toggleAutoClearing)
+                }
+                OutlinedTextField(
+                    value = uiState.autoCleaningInterval,
+                    onValueChange = viewModel::changeInterval,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    label = { Text(text = stringResource(R.string.interval)) },
+                )
             }
         }
     }
