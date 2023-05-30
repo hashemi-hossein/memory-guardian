@@ -5,7 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Build
 
-fun Context.getClipboardManager()=
+fun Context.getClipboardManager() =
     this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
 fun ClipboardManager.clear() {
@@ -21,4 +21,12 @@ fun ClipboardManager.clear() {
     } else {
         alternativeCleanMethod()
     }
+}
+
+fun ClipboardManager.getContentClipDataList(): List<ClipData.Item> {
+    return this.primaryClip?.let { clipData: ClipData ->
+        List(clipData.itemCount) {
+            clipData.getItemAt(it)
+        }
+    } ?: emptyList()
 }
