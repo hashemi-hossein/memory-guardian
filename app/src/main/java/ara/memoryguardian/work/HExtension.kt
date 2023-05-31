@@ -30,3 +30,9 @@ fun ClipboardManager.getContentClipDataList(): List<ClipData.Item> {
         }
     } ?: emptyList()
 }
+
+fun ClipboardManager.getContentStringList(context: Context): List<String> {
+    return getContentClipDataList().map {
+        it.coerceToText(context).toString()
+    }
+}
