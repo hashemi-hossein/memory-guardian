@@ -36,3 +36,6 @@ fun ClipboardManager.getContentStringList(context: Context): List<String> {
         it.coerceToText(context).toString()
     }
 }
+
+fun ClipboardManager.getContentText(context: Context) =
+    getContentStringList(context).joinToString(separator = "\n")
