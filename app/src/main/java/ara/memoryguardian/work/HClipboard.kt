@@ -24,6 +24,10 @@ class HClipboard @Inject constructor(
         context.getClipboardManager()
     }
 
+    suspend fun getContent() = withContext(Dispatchers.IO) {
+        return@withContext clipboardManager.getContentText(context)
+    }
+
     suspend fun clear() = withContext(Dispatchers.IO) {
         clipboardManager.clear()
         if (readUserPreferencesUseCase().isNotificationEnable)
