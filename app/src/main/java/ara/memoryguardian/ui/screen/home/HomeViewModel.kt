@@ -43,7 +43,10 @@ class HomeViewModel @Inject constructor(
         _uiState.update { it.copy(clipboardContent = clipboardContent) }
     }
 
-    fun clearClipboard() = viewModelScope.launch { hClipboard.clear() }
+    fun clearClipboard() = viewModelScope.launch {
+        hClipboard.clear()
+        getCurrentClipboardContent()
+    }
 
     fun toggleAutoClearing(isAutoCleaningEnable: Boolean) {
         viewModelScope.launch {
