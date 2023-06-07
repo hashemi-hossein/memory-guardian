@@ -9,14 +9,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -79,11 +79,24 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                Button(onClick = viewModel::clearClipBoard) {
+                Button(onClick = viewModel::clearClipboard) {
                     Text(text = stringResource(R.string.clear_clipboard_now))
                 }
 
-                Divider(modifier = Modifier.padding(vertical = 20.dp))
+                Divider(modifier = Modifier.padding(vertical = 7.dp))
+
+                Button(onClick = viewModel::getCurrentClipboardContent) {
+                    Text(text = "Get Current Clipboard Content")
+                }
+
+                if (uiState.clipboardContent.isNotEmpty())
+                    Card {
+                        SelectionContainer(modifier = Modifier.padding(7.dp)) {
+                            Text(text = uiState.clipboardContent)
+                        }
+                    }
+
+                Divider(modifier = Modifier.padding(vertical = 7.dp))
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
