@@ -86,7 +86,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 Divider(modifier = Modifier.padding(vertical = 7.dp))
 
                 Button(onClick = viewModel::getCurrentClipboardContent) {
-                    Text(text = "Get Current Clipboard Content")
+                    Text(text = stringResource(R.string.get_current_clipboard_content))
                 }
 
                 if (uiState.clipboardContent.isNotEmpty())
