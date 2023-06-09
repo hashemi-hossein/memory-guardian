@@ -91,7 +91,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
 
                 if (uiState.clipboardContent.isNotEmpty())
                     Card {
-                        SelectionContainer(modifier = Modifier.padding(7.dp)) {
+                        SelectionContainer(modifier = Modifier.padding(10.dp)) {
                             Text(text = uiState.clipboardContent)
                         }
                     }
