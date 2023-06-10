@@ -56,12 +56,16 @@ class HomeViewModel @Inject constructor(
     }
 
     fun changeInterval(value: String) {
-        if (value.isDigitsOnly()) {
+        _uiState.update { it.copy(autoCleaningInterval = value) }
+        if (isIntervalError(autoCleaningInterval = value).not()) {
             viewModelScope.launch {
                 writeUserPreferencesUseCase(UserPreferences::autoCleaningInterval, value.toInt())
             }
         }
     }
+
+    fun isIntervalError(autoCleaningInterval: String = uiState.value.autoCleaningInterval) =
+        autoCleaningInterval.isBlank() || autoCleaningInterval.isDigitsOnly().not() || (autoCleaningInterval.toInt() < 15)
 
     fun emptySnackbarMessage() {
         _uiState.update { it.copy(snackbarMessage = null) }
