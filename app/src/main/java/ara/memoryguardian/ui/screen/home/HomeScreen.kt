@@ -130,7 +130,9 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                     value = uiState.autoCleaningInterval,
                     onValueChange = viewModel::changeInterval,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    label = { Text(text = stringResource(R.string.interval)) },
+                    label = { Text(text = stringResource(R.string.interval_minutes)) },
+                    isError = viewModel.isIntervalError(),
+                    supportingText = { if (viewModel.isIntervalError()) Text(text = "Please enter a number that is 15 or greater") }
                 )
             }
         }
