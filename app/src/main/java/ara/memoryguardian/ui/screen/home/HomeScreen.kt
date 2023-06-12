@@ -132,7 +132,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     label = { Text(text = stringResource(R.string.interval_minutes)) },
                     isError = viewModel.isIntervalError(),
-                    supportingText = { if (viewModel.isIntervalError()) Text(text = "Please enter a number that is 15 or greater") }
+                    supportingText = { if (viewModel.isIntervalError()) Text(text = stringResource(R.string.please_enter_a_number_that_is_15_or_greater)) },
                 )
             }
         }
