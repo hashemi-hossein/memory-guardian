@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.kapt")
     id("dagger.hilt.android.plugin")
 }
@@ -61,7 +61,7 @@ android {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
 
-    packaging {
+    packagingOptions {
         resources {
             excludes += "/META-INF/AL2.0"
             excludes += "/META-INF/LGPL2.1"
@@ -73,30 +73,27 @@ android {
 }
 
 dependencies {
-
     implementation(project(":preference"))
 
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.windowsize)
+    implementation(libs.androidx.compose.material.iconsExtended)
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.work.runtime.ktx)
-    implementation(libs.timber)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
+
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.timber)
 }
