@@ -10,9 +10,9 @@ plugins {
 android {
     namespace = "ara.preference"
 
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     compileOptions {
@@ -25,14 +25,14 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.timber)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.androidx.datastore)
-    implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.android)
+
+    implementation(libs.timber)
 }

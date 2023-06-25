@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "ara.memoryguardian"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "ara.memoryguardian"
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0.0"
 
@@ -58,7 +58,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 
     packagingOptions {
