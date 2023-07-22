@@ -19,6 +19,19 @@ In addition to its core functionality, **Memory Guardian** offers a host of supp
 
 
 
+## Screenshots
+
+<div style="width:100%; display:flex; justify-content:space-between;">
+
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.jpg" width=18% alt="Home">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.jpg)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.jpg" width=18% alt="Home_Dark">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.jpg)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.jpg" width=18% alt="Home with clipboard content">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.jpg)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.jpg" width=18% alt="Home with clipboard content_Dark">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.jpg)
+
+</div>
+
+
+
 ## Download
 
 Get the latest APK from the [Releases Section](https://github.com/hashemi-hossein/memory-guardian/releases/latest)
