@@ -45,7 +45,8 @@ class HClipboard @Inject constructor(
                 PeriodicWorkRequestBuilder<ClipboardWorker>(userPreferences.autoCleaningInterval.toLong(), TimeUnit.MINUTES)
                     .setInputData(
                         workDataOf(
-                            "isNotificationEnable" to userPreferences.isNotificationEnable
+                            "isNotificationEnable" to userPreferences.isNotificationEnable,
+                            "isSmallPopupEnable" to userPreferences.isSmallPopupEnable,
                         )
                     )
                     .build()
