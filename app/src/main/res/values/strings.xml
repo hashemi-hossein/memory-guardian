@@ -11,4 +11,5 @@
     <string name="clipboard_cleared">Clipboard cleared</string>
     <string name="clear_clipboard">Clear Clipboard</string>
     <string name="show_clipboard">Show Clipboard</string>
+    <string name="small_popup">Small Popup</string>
 </resources>
