@@ -30,6 +30,10 @@ class UserPreferencesRepository
                     it.copy(isNotificationEnable = value as Boolean)
                 }
 
+                UserPreferences::isSmallPopupEnable -> {
+                    it.copy(isSmallPopupEnable = value as Boolean)
+                }
+
                 UserPreferences::isAutoCleaningEnable -> {
                     it.copy(isAutoCleaningEnable = value as Boolean)
                 }
