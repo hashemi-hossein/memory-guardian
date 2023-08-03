@@ -2,6 +2,7 @@ package ara.memoryguardian.work
 
 import android.content.ClipboardManager
 import android.content.Context
+import android.widget.Toast
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
@@ -27,8 +28,13 @@ class HClipboard @Inject constructor(
 
     suspend fun clear() {
         clipboardManager.clear()
-        if (readUserPreferencesUseCase().isNotificationEnable)
+
+        val userPreferences = readUserPreferencesUseCase()
+        if (userPreferences.isNotificationEnable)
             context.showNotification(context.getString(R.string.clipboard_cleared), "")
+
+        if (userPreferences.isSmallPopupEnable)
+            Toast.makeText(context, context.getString(R.string.clipboard_cleared), Toast.LENGTH_LONG).show()
     }
 
     suspend fun toggleAutoClearing(isAutoCleaningEnable: Boolean) {
