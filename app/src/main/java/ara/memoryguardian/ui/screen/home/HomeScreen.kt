@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -99,24 +100,40 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 Divider(modifier = Modifier.padding(vertical = 7.dp))
 
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
-                    Text(text = stringResource(R.string.notification))
-                    Switch(
-                        checked = uiState.isNotificationEnable,
-                        onCheckedChange = {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                                (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
-                                        != PackageManager.PERMISSION_GRANTED)
-                            ) {
-                                Timber.d("launch notification permission requester")
-                                notificationPermissionRequest.launch(Manifest.permission.POST_NOTIFICATIONS)
-                            } else {
-                                viewModel.toggleNotification(it)
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    ) {
+                        Text(text = stringResource(R.string.small_popup))
+                        Switch(
+                            checked = uiState.isSmallPopupEnable,
+                            onCheckedChange = viewModel::toggleSmallPopup,
+                        )
+                    }
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    ) {
+                        Text(text = stringResource(R.string.notification))
+                        Switch(
+                            checked = uiState.isNotificationEnable,
+                            onCheckedChange = {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                                    (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                                            != PackageManager.PERMISSION_GRANTED)
+                                ) {
+                                    Timber.d("launch notification permission requester")
+                                    notificationPermissionRequest.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                } else {
+                                    viewModel.toggleNotification(it)
+                                }
                             }
-                        }
-                    )
+                        )
+                    }
                 }
 
                 Row(
