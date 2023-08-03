@@ -3,6 +3,7 @@ package ara.memoryguardian.work
 import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import ara.memoryguardian.R
 import timber.log.Timber
 
 class ClipboardWorker(
@@ -20,7 +21,7 @@ class ClipboardWorker(
 
         val isNotificationEnable = inputData.getBoolean("isNotificationEnable",false)
         if (isNotificationEnable)
-            context.showNotification("Clipboard cleared", "")
+            context.showNotification(context.getString(R.string.clipboard_cleared), "")
 
         return Result.success()
     }
