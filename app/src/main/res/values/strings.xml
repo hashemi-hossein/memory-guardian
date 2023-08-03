@@ -10,4 +10,5 @@
     <string name="please_enter_a_number_that_is_15_or_greater">Please enter a number that is 15 or greater</string>
     <string name="clipboard_cleared">Clipboard cleared</string>
     <string name="clear_clipboard">Clear Clipboard</string>
+    <string name="show_clipboard">Show Clipboard</string>
 </resources>
