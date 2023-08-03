@@ -9,8 +9,6 @@ import androidx.work.workDataOf
 import ara.memoryguardian.R
 import ara.note.domain.usecase.userpreferences.ReadUserPreferencesUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,17 +23,15 @@ class HClipboard @Inject constructor(
         context.getClipboardManager()
     }
 
-    suspend fun getContent() = withContext(Dispatchers.IO) {
-        return@withContext clipboardManager.getContentText(context)
-    }
+    fun getContent() = clipboardManager.getContentText(context)
 
-    suspend fun clear() = withContext(Dispatchers.IO) {
+    suspend fun clear() {
         clipboardManager.clear()
         if (readUserPreferencesUseCase().isNotificationEnable)
             context.showNotification(context.getString(R.string.clipboard_cleared), "")
     }
 
-    suspend fun toggleAutoClearing(isAutoCleaningEnable: Boolean) = withContext(Dispatchers.IO) {
+    suspend fun toggleAutoClearing(isAutoCleaningEnable: Boolean) {
         val workManager = WorkManager.getInstance(context)
         if (isAutoCleaningEnable) {
             val userPreferences = readUserPreferencesUseCase()
