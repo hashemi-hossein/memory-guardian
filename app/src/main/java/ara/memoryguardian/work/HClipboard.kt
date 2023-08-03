@@ -6,6 +6,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import androidx.work.workDataOf
+import ara.memoryguardian.R
 import ara.note.domain.usecase.userpreferences.ReadUserPreferencesUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +32,7 @@ class HClipboard @Inject constructor(
     suspend fun clear() = withContext(Dispatchers.IO) {
         clipboardManager.clear()
         if (readUserPreferencesUseCase().isNotificationEnable)
-            context.showNotification("Clipboard cleared", "")
+            context.showNotification(context.getString(R.string.clipboard_cleared), "")
     }
 
     suspend fun toggleAutoClearing(isAutoCleaningEnable: Boolean) = withContext(Dispatchers.IO) {
