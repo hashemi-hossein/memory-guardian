@@ -2,9 +2,11 @@ package ara.note.data.repository
 
 import androidx.datastore.core.DataStore
 import ara.note.data.model.UserPreferences
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
@@ -18,9 +20,9 @@ import kotlin.reflect.KProperty1
 class UserPreferencesRepository
 @Inject constructor(private val userPreferencesStore: DataStore<UserPreferences>) {
 
-    suspend fun read() = userPreferencesStore.data.first()
+    suspend fun read() = withContext(Dispatchers.IO) { userPreferencesStore.data.first() }
 
-    suspend fun <T> write(kProperty: KProperty1<UserPreferences, T>, value: T) =
+    suspend fun <T> write(kProperty: KProperty1<UserPreferences, T>, value: T) = withContext(Dispatchers.IO) {
         userPreferencesStore.updateData {
             Timber.d("$kProperty-- value= $value")
             when (kProperty) {
@@ -41,6 +43,7 @@ class UserPreferencesRepository
                 }
             }
         }
+    }
 
     fun observe(): Flow<UserPreferences> = userPreferencesStore.data
         .catch { exception ->
