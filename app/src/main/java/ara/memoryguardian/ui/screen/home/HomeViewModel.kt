@@ -30,6 +30,7 @@ class HomeViewModel @Inject constructor(
                 _uiState.update {
                     it.copy(
                         isNotificationEnable = preference.isNotificationEnable,
+                        isSmallPopupEnable = preference.isSmallPopupEnable,
                         isAutoCleaningEnable = preference.isAutoCleaningEnable,
                         autoCleaningInterval = preference.autoCleaningInterval.toString(),
                     )
@@ -80,6 +81,14 @@ class HomeViewModel @Inject constructor(
             if (uiState.value.isAutoCleaningEnable)
                 hClipboard.toggleAutoClearing(true)
             writeUserPreferencesUseCase(UserPreferences::isNotificationEnable, checked)
+        }
+    }
+
+    fun toggleSmallPopup(checked: Boolean) {
+        viewModelScope.launch {
+            if (uiState.value.isAutoCleaningEnable)
+                hClipboard.toggleAutoClearing(true)
+            writeUserPreferencesUseCase(UserPreferences::isSmallPopupEnable, checked)
         }
     }
 }
