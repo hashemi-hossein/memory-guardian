@@ -1,6 +1,7 @@
 package ara.memoryguardian.work
 
 import android.content.Context
+import android.widget.Toast
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import ara.memoryguardian.R
@@ -22,6 +23,10 @@ class ClipboardWorker(
         val isNotificationEnable = inputData.getBoolean("isNotificationEnable",false)
         if (isNotificationEnable)
             context.showNotification(context.getString(R.string.clipboard_cleared), "")
+
+        val isSmallPopupEnable = inputData.getBoolean("isSmallPopupEnable",false)
+        if (isSmallPopupEnable)
+            Toast.makeText(context, context.getString(R.string.clipboard_cleared), Toast.LENGTH_LONG).show()
 
         return Result.success()
     }
