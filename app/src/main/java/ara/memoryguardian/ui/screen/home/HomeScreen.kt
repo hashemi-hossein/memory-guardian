@@ -18,7 +18,7 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -26,6 +26,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ara.memoryguardian.R
+import ara.memoryguardian.work.MemoryForegroundService
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -49,7 +51,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    val notificationPermissionRequest = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+    val notificationPermissionRequestContract = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) {
             viewModel.toggleNotification(true)
         } else {
@@ -63,6 +65,10 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
             snackbarHostState.showSnackbar(snackbarMessage, withDismissAction = true)
             viewModel.emptySnackbarMessage()
         }
+    }
+
+    LaunchedEffect(uiState.isAutoCleaningEnable != null) {
+        if (uiState.isAutoCleaningEnable == true) { MemoryForegroundService.start(context) }
     }
 
     Scaffold(
@@ -84,20 +90,23 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                     Text(text = stringResource(R.string.clear_clipboard_now))
                 }
 
-                Divider(modifier = Modifier.padding(vertical = 7.dp))
+                HorizontalDivider(modifier = Modifier.padding(vertical = 7.dp))
 
                 Button(onClick = viewModel::getCurrentClipboardContent) {
                     Text(text = stringResource(R.string.get_current_clipboard_content))
                 }
 
-                if (uiState.clipboardContent.isNotEmpty())
-                    Card {
-                        SelectionContainer(modifier = Modifier.padding(10.dp)) {
-                            Text(text = uiState.clipboardContent)
-                        }
+                Card {
+                    SelectionContainer(
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth()
+                    ) {
+                        Text(text = uiState.clipboardContent)
                     }
+                }
 
-                Divider(modifier = Modifier.padding(vertical = 7.dp))
+                HorizontalDivider(modifier = Modifier.padding(vertical = 7.dp))
 
                 Row(
                     Modifier.fillMaxWidth(),
@@ -127,7 +136,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                                             != PackageManager.PERMISSION_GRANTED)
                                 ) {
                                     Timber.d("launch notification permission requester")
-                                    notificationPermissionRequest.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                    notificationPermissionRequestContract.launch(Manifest.permission.POST_NOTIFICATIONS)
                                 } else {
                                     viewModel.toggleNotification(it)
                                 }
@@ -136,20 +145,29 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                     }
                 }
 
+                HorizontalDivider(modifier = Modifier.padding(vertical = 7.dp))
+
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     Text(text = stringResource(R.string.auto_clear_clipboard))
-                    Switch(checked = uiState.isAutoCleaningEnable, onCheckedChange = viewModel::toggleAutoClearing)
+                    Switch(
+                        checked = uiState.isAutoCleaningEnable ?: false,
+                        onCheckedChange = {
+                            viewModel.toggleAutoClearing(it)
+                            if (it) MemoryForegroundService.start(context)
+                            else MemoryForegroundService.stop(context)
+                        }
+                    )
                 }
                 OutlinedTextField(
-                    value = uiState.autoCleaningInterval,
+                    value = uiState.autoCleaningIntervalSecond,
                     onValueChange = viewModel::changeInterval,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    label = { Text(text = stringResource(R.string.interval_minutes)) },
+                    label = { Text(text = stringResource(R.string.interval_seconds)) },
                     isError = viewModel.isIntervalError(),
-                    supportingText = { if (viewModel.isIntervalError()) Text(text = stringResource(R.string.please_enter_a_number_that_is_15_or_greater)) },
+                    supportingText = { if (viewModel.isIntervalError()) Text(text = stringResource(R.string.please_enter_a_number_that_is_1_or_greater)) },
                 )
             }
         }

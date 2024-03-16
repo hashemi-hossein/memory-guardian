@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
                         isNotificationEnable = preference.isNotificationEnable,
                         isSmallPopupEnable = preference.isSmallPopupEnable,
                         isAutoCleaningEnable = preference.isAutoCleaningEnable,
-                        autoCleaningInterval = preference.autoCleaningInterval.toString(),
+                        autoCleaningIntervalSecond = preference.autoCleaningIntervalSecond.toString(),
                     )
                 }
             }
@@ -51,22 +51,22 @@ class HomeViewModel @Inject constructor(
 
     fun toggleAutoClearing(isAutoCleaningEnable: Boolean) {
         viewModelScope.launch {
-            hClipboard.toggleAutoClearing(isAutoCleaningEnable)
+//            hClipboard.toggleAutoClearing(isAutoCleaningEnable)
             writeUserPreferencesUseCase(UserPreferences::isAutoCleaningEnable, isAutoCleaningEnable)
         }
     }
 
     fun changeInterval(value: String) {
-        _uiState.update { it.copy(autoCleaningInterval = value) }
+        _uiState.update { it.copy(autoCleaningIntervalSecond = value) }
         if (isIntervalError(autoCleaningInterval = value).not()) {
             viewModelScope.launch {
-                writeUserPreferencesUseCase(UserPreferences::autoCleaningInterval, value.toInt())
+                writeUserPreferencesUseCase(UserPreferences::autoCleaningIntervalSecond, value.toInt())
             }
         }
     }
 
-    fun isIntervalError(autoCleaningInterval: String = uiState.value.autoCleaningInterval) =
-        autoCleaningInterval.isBlank() || autoCleaningInterval.isDigitsOnly().not() || (autoCleaningInterval.toInt() < 15)
+    fun isIntervalError(autoCleaningInterval: String = uiState.value.autoCleaningIntervalSecond) =
+        autoCleaningInterval.isBlank() || autoCleaningInterval.isDigitsOnly().not() || (autoCleaningInterval.toInt() < 1)
 
     fun emptySnackbarMessage() {
         _uiState.update { it.copy(snackbarMessage = null) }
@@ -78,16 +78,16 @@ class HomeViewModel @Inject constructor(
 
     fun toggleNotification(checked: Boolean): Unit {
         viewModelScope.launch {
-            if (uiState.value.isAutoCleaningEnable)
-                hClipboard.toggleAutoClearing(true)
+//            if (uiState.value.isAutoCleaningEnable)
+//                hClipboard.toggleAutoClearing(true)
             writeUserPreferencesUseCase(UserPreferences::isNotificationEnable, checked)
         }
     }
 
     fun toggleSmallPopup(checked: Boolean) {
         viewModelScope.launch {
-            if (uiState.value.isAutoCleaningEnable)
-                hClipboard.toggleAutoClearing(true)
+//            if (uiState.value.isAutoCleaningEnable)
+//                hClipboard.toggleAutoClearing(true)
             writeUserPreferencesUseCase(UserPreferences::isSmallPopupEnable, checked)
         }
     }
