@@ -9,5 +9,5 @@ data class UserPreferences(
     val isNotificationEnable: Boolean = false,
     val isSmallPopupEnable: Boolean = false,
     val isAutoCleaningEnable: Boolean = false,
-    val autoCleaningInterval: Int = 15,
+    val autoCleaningIntervalSecond: Int = 60,
 )

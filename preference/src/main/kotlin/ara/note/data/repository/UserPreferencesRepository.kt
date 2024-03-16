@@ -38,8 +38,8 @@ class UserPreferencesRepository
                     it.copy(isAutoCleaningEnable = value as Boolean)
                 }
 
-                UserPreferences::autoCleaningInterval -> {
-                    it.copy(autoCleaningInterval = value as Int)
+                UserPreferences::autoCleaningIntervalSecond -> {
+                    it.copy(autoCleaningIntervalSecond = value as Int)
                 }
 
                 else -> {

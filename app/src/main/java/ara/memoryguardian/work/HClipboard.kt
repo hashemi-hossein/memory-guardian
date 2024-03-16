@@ -42,7 +42,7 @@ class HClipboard @Inject constructor(
         if (isAutoCleaningEnable) {
             val userPreferences = readUserPreferencesUseCase()
             val workRequest: WorkRequest =
-                PeriodicWorkRequestBuilder<ClipboardWorker>(userPreferences.autoCleaningInterval.toLong(), TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<ClipboardWorker>(userPreferences.autoCleaningIntervalSecond.toLong(), TimeUnit.MINUTES)
                     .setInputData(
                         workDataOf(
                             "isNotificationEnable" to userPreferences.isNotificationEnable,
