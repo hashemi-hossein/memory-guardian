@@ -4,6 +4,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Build
+import ara.memoryguardian.R
+import ara.note.data.model.UserPreferences
 
 fun Context.getClipboardManager() =
     this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -39,3 +41,10 @@ fun ClipboardManager.getContentStringList(context: Context): List<String> {
 
 fun ClipboardManager.getContentText(context: Context) =
     getContentStringList(context).joinToString(separator = "\n")
+
+fun ClipboardManager.clearAndNotifyIfEnabled(context: Context, userPreferences: UserPreferences) {
+    clear()
+
+    if (userPreferences.isNotificationEnable)
+        context.showNotification(context.getString(R.string.clipboard_cleared), "")
+}
