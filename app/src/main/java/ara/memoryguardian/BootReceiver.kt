@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import ara.memoryguardian.work.HClipboard
+import ara.memoryguardian.work.MemoryForegroundService
 import ara.note.domain.usecase.userpreferences.ReadUserPreferencesUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -31,7 +32,8 @@ class BootReceiver : BroadcastReceiver() {
         if (context != null && intent?.action == Intent.ACTION_BOOT_COMPLETED) {
             coroutineScope.launch {
                 if (readUserPreferencesUseCase().isAutoCleaningEnable) {
-                    hClipboard.toggleAutoClearing(true)
+//                    hClipboard.toggleAutoClearing(true)
+                    MemoryForegroundService.start(context)
                 }
             }
         }
