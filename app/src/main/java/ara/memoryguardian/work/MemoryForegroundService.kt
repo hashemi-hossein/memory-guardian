@@ -46,6 +46,8 @@ class MemoryForegroundService : Service() {
         fun stop(context: Context) {
             context.stopService(Intent(context, MemoryForegroundService::class.java))
         }
+
+        const val PAUSE_INTENT_EXTRA = "pause"
     }
 
     @Inject
@@ -60,6 +62,14 @@ class MemoryForegroundService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Timber.d("MemoryForegroundService class # onStartCommand fun")
         super.onStartCommand(intent, flags, startId)
+
+        val pause = intent?.getBooleanExtra(PAUSE_INTENT_EXTRA, false) ?: false
+        Timber.d("MemoryForegroundService class # onStartCommand fun # pause=$pause")
+        if (pause) {
+            handler.removeCallbacks(runnableCode)
+            handler.postDelayed(runnableCode, 5 * 60 * 1000)
+            return START_STICKY
+        }
 
         val notification: Notification = createNotification()
         ServiceCompat.startForeground(
@@ -112,16 +122,25 @@ class MemoryForegroundService : Service() {
             }
         }
 
+        val buttonIntent = Intent(this, MemoryForegroundService::class.java)
+            buttonIntent.putExtra(PAUSE_INTENT_EXTRA, true)
+        val buttonPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            PendingIntent.getForegroundService(this, 5423, buttonIntent, PendingIntent.FLAG_IMMUTABLE)
+        } else {
+            PendingIntent.getService(this, 5423, buttonIntent, PendingIntent.FLAG_IMMUTABLE)
+        }
+
         return NotificationCompat.Builder(this, FOREGROUND_SERVICE_NOTIFICATION_CHANNEL_ID)
             .setContentTitle(getString(R.string.app_name))
             .setContentText(getString(R.string.memory_guardian_is_running_in_the_background))
             .setSmallIcon(R.drawable.ic_clipboard)
             .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
             .setContentIntent(Intent(this, MainActivity::class.java).let { notificationIntent ->
-                PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
+                PendingIntent.getActivity(this, 4814, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
             })
             .setOngoing(true)
             .setSilent(true)
+            .addAction(R.drawable.ic_pause, getString(R.string.pause_for_5_min), buttonPendingIntent)
             .build()
     }
 }
