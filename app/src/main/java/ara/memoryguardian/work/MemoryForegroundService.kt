@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import ara.memoryguardian.FOREGROUND_SERVICE_NOTIFICATION_CHANNEL_ID
@@ -66,6 +67,7 @@ class MemoryForegroundService : Service() {
         val pause = intent?.getBooleanExtra(PAUSE_INTENT_EXTRA, false) ?: false
         Timber.d("MemoryForegroundService class # onStartCommand fun # pause=$pause")
         if (pause) {
+            Toast.makeText(this, "Pause MemoryGuardian for 5 min", Toast.LENGTH_LONG).show()
             handler.removeCallbacks(runnableCode)
             handler.postDelayed(runnableCode, 5 * 60 * 1000)
             return START_STICKY
@@ -122,8 +124,7 @@ class MemoryForegroundService : Service() {
             }
         }
 
-        val buttonIntent = Intent(this, MemoryForegroundService::class.java)
-            buttonIntent.putExtra(PAUSE_INTENT_EXTRA, true)
+        val buttonIntent = Intent(this, MemoryForegroundService::class.java).putExtra(PAUSE_INTENT_EXTRA, true)
         val buttonPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             PendingIntent.getForegroundService(this, 5423, buttonIntent, PendingIntent.FLAG_IMMUTABLE)
         } else {
