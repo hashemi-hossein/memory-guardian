@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MemoryGuardian</string>
+    <string name="clear_clipboard_now">立即清空剪贴板</string>
+    <string name="auto_clear_clipboard">自动清空剪贴板</string>
+    <string name="interval_seconds">间隔（秒）</string>
+    <string name="notification">通知</string>
+    <string name="the_permission_is_needed_to_show_notifications">需要权限以发送通知</string>
+    <string name="get_current_clipboard_content">获取当前剪贴板内容</string>
+    <string name="please_enter_a_number_that_is_1_or_greater">请输入一个>=1的数字</string>
+    <string name="clipboard_cleared">剪贴板已清空</string>
+    <string name="clear_clipboard">清空剪贴板</string>
+    <string name="show_clipboard">显示剪贴板</string>
+    <string name="small_popup">显示toast信息</string>
+    <string name="memory_guardian_is_running_in_the_background">Memory Guardian正在后台运行</string>
+    <string name="pause_for_5_min">暂停5分钟</string>
+</resources>
