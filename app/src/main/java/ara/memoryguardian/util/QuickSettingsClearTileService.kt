@@ -1,5 +1,6 @@
 package ara.memoryguardian.util
 
+import android.app.Dialog
 import android.os.Build
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
@@ -43,5 +44,10 @@ class QuickSettingsClearTileService : TileService() {
         serviceScope.launch {
             hClipboard.clear()
         }
+
+        // collapse the Quick Settings panel
+        val dialog = Dialog(this)
+        showDialog(dialog)
+        dialog.hide()
     }
 }

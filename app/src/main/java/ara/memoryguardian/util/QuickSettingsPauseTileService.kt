@@ -1,5 +1,6 @@
 package ara.memoryguardian.util
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.TileService
@@ -23,5 +24,10 @@ class QuickSettingsPauseTileService : TileService() {
         } else {
             startService(intent)
         }
+
+        // collapse the Quick Settings panel
+        val dialog = Dialog(this)
+        showDialog(dialog)
+        dialog.hide()
     }
 }
