@@ -15,13 +15,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class AppViewModel @Inject constructor(
     private val hClipboard: HClipboard,
     private val observeUserPreferencesUseCase: ObserveUserPreferencesUseCase,
     private val writeUserPreferencesUseCase: WriteUserPreferencesUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(HomeState())
+    private val _uiState = MutableStateFlow(AppUIState())
     val uiState = _uiState.asStateFlow()
 
     init {
@@ -68,12 +68,12 @@ class HomeViewModel @Inject constructor(
     fun isIntervalError(autoCleaningInterval: String = uiState.value.autoCleaningIntervalSecond) =
         autoCleaningInterval.isBlank() || autoCleaningInterval.isDigitsOnly().not() || (autoCleaningInterval.toInt() < 1)
 
-    fun emptySnackbarMessage() {
-        _uiState.update { it.copy(snackbarMessage = null) }
+    fun emptySnackBarMessage() {
+        _uiState.update { it.copy(snackBarMessage = null) }
     }
 
-    fun showSnackbar(message: String) {
-        _uiState.update { it.copy(snackbarMessage = message) }
+    fun showSnackBar(message: String) {
+        _uiState.update { it.copy(snackBarMessage = message) }
     }
 
     fun toggleNotification(checked: Boolean): Unit {

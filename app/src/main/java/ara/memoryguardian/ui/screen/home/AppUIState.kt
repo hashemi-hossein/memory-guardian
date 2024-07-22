@@ -2,8 +2,8 @@ package ara.memoryguardian.ui.screen.home
 
 import ara.memoryguardian.DEFAULT_AUTO_CLEANING_INTERVAL
 
-data class HomeState(
-    val snackbarMessage: String? = null,
+data class AppUIState(
+    val snackBarMessage: String? = null,
 
     val isNotificationEnable: Boolean = false,
     val isSmallPopupEnable: Boolean = false,
