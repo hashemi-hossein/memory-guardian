@@ -19,7 +19,7 @@ In addition to its core functionality, **Memory Guardian** offers a host of supp
 
 
 
-## Screenshots
+## Screenshots (needs to be updated)
 
 <div style="width:100%; display:flex; justify-content:space-between;">
 
