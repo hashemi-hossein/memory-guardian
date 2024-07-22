@@ -8,7 +8,7 @@ compileSdk = "34"
 targetSdk = "34"
 
 # @pin
-androidGradle = "8.5.0"
+androidGradle = "8.5.1"
 # @pin
 kotlin = "1.9.24"
 
@@ -17,6 +17,8 @@ compose-compiler = "1.5.14"
 
 androidx-activity-compose = "1.9.0"
 androidx-activity-ktx = "1.9.0"
+androidx-navigation-compose = "2.7.7"
+androidx-hilt-navigation-compose = "1.2.0"
 androidx-corektx = "1.13.1"
 androidx-datastore = "1.1.1"
 androidx-lifecycle = "2.8.3"
@@ -58,6 +60,8 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 # androidx
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activity-ktx" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation-compose" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidx-hilt-navigation-compose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-corektx" }
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "androidx-datastore" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
