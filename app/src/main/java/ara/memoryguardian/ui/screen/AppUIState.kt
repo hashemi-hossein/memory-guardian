@@ -1,4 +1,4 @@
-package ara.memoryguardian.ui.screen.home
+package ara.memoryguardian.ui.screen
 
 import ara.memoryguardian.DEFAULT_AUTO_CLEANING_INTERVAL
 

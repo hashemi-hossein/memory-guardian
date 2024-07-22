@@ -1,4 +1,4 @@
-package ara.memoryguardian.ui.screen.home
+package ara.memoryguardian.ui.screen
 
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModel

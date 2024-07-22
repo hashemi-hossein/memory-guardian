@@ -24,8 +24,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import ara.memoryguardian.R
-import ara.memoryguardian.ui.screen.home.AppUIState
-import ara.memoryguardian.ui.screen.home.AppViewModel
 import ara.memoryguardian.work.MemoryForegroundService
 import timber.log.Timber
 
