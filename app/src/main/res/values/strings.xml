@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">MemoryGuardian</string>
 
-    <string name="clear_clipboard_now">Clear Clipboard Now</string>
     <string name="auto_clear_clipboard">Auto Clear Clipboard</string>
     <string name="interval_seconds">Interval (Seconds)</string>
     <string name="notification">Notification</string>
     <string name="the_permission_is_needed_to_show_notifications">The Permission is needed to show Notifications</string>
-    <string name="get_current_clipboard_content">Get Current Clipboard Content</string>
     <string name="please_enter_a_number_that_is_1_or_greater">Please enter a number that is 1 or greater</string>
     <string name="clipboard_cleared">Clipboard cleared</string>
     <string name="clear_clipboard">Clear Clipboard</string>
@@ -16,4 +14,7 @@
     <string name="pause_for_5_min">Pause for 5 min</string>
     <string name="clipboard_editor">Clipboard Editor</string>
     <string name="settings">Settings</string>
+    <string name="get">Get</string>
+    <string name="set">Set</string>
+    <string name="clear">Clear</string>
 </resources>

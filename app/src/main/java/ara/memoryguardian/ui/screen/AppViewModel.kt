@@ -39,6 +39,14 @@ class AppViewModel @Inject constructor(
         }
     }
 
+    fun setContent(value: String) {
+        _uiState.update { it.copy(clipboardContent = value) }
+    }
+
+    fun setClipboardContent() {
+        hClipboard.setContent(uiState.value.clipboardContent)
+    }
+
     fun getCurrentClipboardContent() = viewModelScope.launch {
         val clipboardContent = hClipboard.getContent()
         _uiState.update { it.copy(clipboardContent = clipboardContent) }
