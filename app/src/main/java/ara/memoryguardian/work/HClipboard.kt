@@ -25,6 +25,7 @@ class HClipboard @Inject constructor(
     }
 
     fun getContent() = clipboardManager.getContentText(context)
+    fun setContent(value: String) = clipboardManager.setContent(value)
 
     suspend fun clear() {
         clipboardManager.clear()

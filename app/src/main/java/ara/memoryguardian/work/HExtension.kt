@@ -25,6 +25,10 @@ fun ClipboardManager.clear() {
     }
 }
 
+fun ClipboardManager.setContent(value: String) {
+    setPrimaryClip(ClipData.newPlainText("value", value))
+}
+
 fun ClipboardManager.getContentClipDataList(): List<ClipData.Item> {
     return this.primaryClip?.let { clipData: ClipData ->
         List(clipData.itemCount) {
