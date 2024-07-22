@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -22,15 +21,14 @@ fun EditorScreen(
     viewModel: AppViewModel,
     uiState: AppUIState,
 ) {
+    LaunchedEffect(true) {
+        viewModel.getCurrentClipboardContent()
+    }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-
-        LaunchedEffect(true) {
-            viewModel.getCurrentClipboardContent()
-        }
-
         Row(
             Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -49,10 +47,10 @@ fun EditorScreen(
         Card {
             TextField(
                 modifier = Modifier
-                    .padding(10.dp)
                     .fillMaxWidth(),
                 value = uiState.clipboardContent,
                 onValueChange = viewModel::setContent,
+                label = { Text(text = stringResource(R.string.clipboard_content)) },
             )
         }
     }
