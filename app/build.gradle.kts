@@ -69,6 +69,9 @@ android {
             excludes += "DebugProbesKt.bin"
         }
     }
+    lint {
+        disable.add("ExtraTranslation")
+    }
 }
 
 dependencies {
