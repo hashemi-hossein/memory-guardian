@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import ara.memoryguardian.R
 import ara.memoryguardian.ui.screen.SettingsScreen
 import ara.memoryguardian.ui.screen.AppViewModel
-import ara.memoryguardian.ui.screen.HomeScreen
+import ara.memoryguardian.ui.screen.EditorScreen
 import ara.memoryguardian.work.MemoryForegroundService
 import kotlinx.coroutines.launch
 
@@ -86,7 +86,7 @@ fun HScaffold(viewModel: AppViewModel) {
         ) {
             Crossfade(targetState = bottomNavigationSelectedItem, label = "screen_transition") {
                 when (it) {
-                    0 -> HomeScreen(viewModel = viewModel, uiState = uiState)
+                    0 -> EditorScreen(viewModel = viewModel, uiState = uiState)
                     1 -> SettingsScreen(viewModel = viewModel, uiState = uiState)
                 }
             }

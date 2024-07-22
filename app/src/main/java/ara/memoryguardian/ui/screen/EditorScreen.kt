@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import ara.memoryguardian.R
 
 @Composable
-fun HomeScreen(
+fun EditorScreen(
     viewModel: AppViewModel,
     uiState: AppUIState,
 ) {
