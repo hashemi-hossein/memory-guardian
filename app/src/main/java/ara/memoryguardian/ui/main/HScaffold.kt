@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import ara.memoryguardian.R
 import ara.memoryguardian.ui.screen.SettingsScreen
 import ara.memoryguardian.ui.screen.home.AppViewModel
-import ara.memoryguardian.ui.screen.home.HomeScreen
+import ara.memoryguardian.ui.screen.HomeScreen
 import ara.memoryguardian.work.MemoryForegroundService
 import kotlinx.coroutines.launch
 

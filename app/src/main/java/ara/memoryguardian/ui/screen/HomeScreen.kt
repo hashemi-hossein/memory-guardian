@@ -1,4 +1,4 @@
-package ara.memoryguardian.ui.screen.home
+package ara.memoryguardian.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ara.memoryguardian.R
+import ara.memoryguardian.ui.screen.home.AppUIState
+import ara.memoryguardian.ui.screen.home.AppViewModel
 
 @Composable
 fun HomeScreen(
