@@ -14,4 +14,6 @@
     <string name="small_popup">Small Popup</string>
     <string name="memory_guardian_is_running_in_the_background">Memory Guardian is running in the background.</string>
     <string name="pause_for_5_min">Pause for 5 min</string>
+    <string name="clipboard_editor">Clipboard Editor</string>
+    <string name="settings">Settings</string>
 </resources>
