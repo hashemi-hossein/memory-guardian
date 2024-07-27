@@ -1,5 +1,7 @@
 package ara.memoryguardian.ui.screen
 
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -39,17 +41,19 @@ class AppViewModel @Inject constructor(
         }
     }
 
-    fun setContent(value: String) {
+    fun setContent(value: TextFieldValue) {
         _uiState.update { it.copy(clipboardContent = value) }
     }
 
     fun setClipboardContent() {
-        hClipboard.setContent(uiState.value.clipboardContent)
+        hClipboard.setContent(uiState.value.clipboardContent.text)
     }
 
     fun getCurrentClipboardContent() = viewModelScope.launch {
         val clipboardContent = hClipboard.getContent()
-        _uiState.update { it.copy(clipboardContent = clipboardContent) }
+        _uiState.update {
+            it.copy(clipboardContent = TextFieldValue(text = clipboardContent, selection = TextRange(index = clipboardContent.length)))
+        }
     }
 
     fun clearClipboard() = viewModelScope.launch {
