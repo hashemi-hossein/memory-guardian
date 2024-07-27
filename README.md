@@ -12,6 +12,11 @@ A Small App for Enhanced Privacy & Security
 - **Manual Clearing:** Use the "Clear" button for immediate action.
 - **Clipboard Editing:** Edit clipboard content directly within the app for quick adjustments.
 - **Notifications:** Get notified when the clipboard is cleared.
+- **Tiny:** The app is small in size and does not consume much storage space.
+- **No Permissions:** Memory Guardian does not require any permissions to function, ensuring user privacy.
+- **No Ads:** Enjoy an ad-free experience with no interruptions.
+- **Minimalistic:** Experience a clean and clutter-free interface for a distraction-free user experience.
+- **Open Source:** Contribute to the project and help improve the app for everyone.
 
 
 
