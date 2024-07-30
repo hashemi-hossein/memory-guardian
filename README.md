@@ -25,10 +25,10 @@ A Small App for Enhanced Privacy & Security
 
 <div style="width:100%; display:flex; justify-content:space-between;">
 
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.jpg" width=23% alt="Home">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.jpg" width=23% alt="Home_Dark">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.jpg" width=23% alt="Home with clipboard content">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.jpg)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.jpg" width=23% alt="Home with clipboard content_Dark">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.jpg)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.png" width=23% alt="Home">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.png" width=23% alt="Home_Dark">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.png" width=23% alt="Home with clipboard content">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.png" width=23% alt="Home with clipboard content_Dark">](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.png)
 
 </div>
 
