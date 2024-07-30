@@ -21,7 +21,7 @@ A Small App for Enhanced Privacy & Security
 
 
 
-## Screenshots (needs to be updated)
+## Screenshots
 
 <div style="width:100%; display:flex; justify-content:space-between;">
 
