@@ -1,5 +1,8 @@
 [versions]
 
+appVersionCode = "13"
+appVersionName = "1.4.2"
+
 # @keep
 minSdk = "21"
 # @keep
