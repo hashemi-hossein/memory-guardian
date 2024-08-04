@@ -2,8 +2,6 @@
 
 A Small App for Enhanced Privacy & Security
 
-
-
 **Memory Guardian** is a lightweight Android app that enhances user privacy and security by automatically clearing the clipboard at set intervals. This helps protect sensitive information, like passwords, from potential leaks to other applications.
 
 **Key Features:**
@@ -19,8 +17,6 @@ A Small App for Enhanced Privacy & Security
 - **Minimalistic:** Experience a clean and clutter-free interface for a distraction-free user experience.
 - **Open Source:** Contribute to the project and help improve the app for everyone.
 
-
-
 ## Screenshots
 
 <div style="width:100%; display:flex; justify-content:space-between;">
@@ -32,9 +28,10 @@ A Small App for Enhanced Privacy & Security
 
 </div>
 
-
-
 ## Download
 
-Get the latest APK from the [Releases Section](https://github.com/hashemi-hossein/memory-guardian/releases/latest)
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/ara.memoryguardian/)
 
+Get the latest APK from the [Releases Section](https://github.com/hashemi-hossein/memory-guardian/releases/latest).
