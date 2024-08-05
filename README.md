@@ -34,4 +34,8 @@ A Small App for Enhanced Privacy & Security
      alt="Get it on F-Droid"
      height="80">](https://f-droid.org/packages/ara.memoryguardian/)
 
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
+     alt="Get it on IzzyOnDroid"
+     height="80">](https://apt.izzysoft.de/fdroid/index/apk/ara.memoryguardian/)
+
 Get the latest APK from the [Releases Section](https://github.com/hashemi-hossein/memory-guardian/releases/latest).
