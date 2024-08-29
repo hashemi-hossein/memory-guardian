@@ -11,11 +11,11 @@ compileSdk = "34"
 targetSdk = "34"
 
 # @pin
-androidGradle = "8.5.1"
+androidGradle = "8.6.0"
 # @pin
 kotlin = "1.9.24"
 
-compose-bom = "2024.06.00"
+compose-bom = "2024.08.00"
 compose-compiler = "1.5.14"
 
 androidx-activity-compose = "1.9.1"
