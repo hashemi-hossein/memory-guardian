@@ -17,7 +17,7 @@ fun ClipboardManager.clear() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
         try {
             clearPrimaryClip()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             alternativeCleanMethod()
         }
     } else {
