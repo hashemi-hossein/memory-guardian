@@ -47,6 +47,18 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".TaskerReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ara.memoryguardian.CLEAR_CLIPBOARD" />
+                <action android:name="ara.memoryguardian.SHOW_CLIPBOARD" />
+                <action android:name="ara.memoryguardian.PAUSE_SERVICE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".util.QuickSettingsClearTileService"
             android:exported="true"
